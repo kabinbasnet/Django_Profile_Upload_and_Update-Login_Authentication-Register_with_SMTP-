@@ -1,0 +1,20 @@
+{# ::::::Inheritance Concept:::::::::::::::::::: #}
+{% extends 'core/base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Save</button>
+
+        {% if messages%}
+            <div class="messages" style="margin-top: 10px;">
+                {% for msg in messages %}
+                    <p {% if msg.tags %} class="{{msg.tags}}" {% endif%}>{{msg}}</p>
+                {% endfor %}
+            </div>        
+        {% endif %}
+    </form>
+{% endblock content %}
